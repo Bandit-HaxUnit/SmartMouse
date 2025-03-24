@@ -53,6 +53,8 @@ Run the cover recorder to collect movement data: `cover_recorder.py`
 
 For more complex patterns, use the multiple dots recorder: `multiple_dots_recorder.py`
 
+> Start by clicking any random dot and continue clicking other dots.
+
 ### 2. Processing Data
 
 - Parse the data into the correct format: `parser.py` generates `mousedata_parsed.json`
