@@ -39,7 +39,29 @@ It includes data collection, processing, and example implementation for natural 
 - **`OffScreenPointGenerator.java`**  
   Generates off-screen points for the AFK simulator.
 
+## Demo
+
+See the algorithm in action here: [Mouse Movement Demo](https://i.imgur.com/802zJJ2.mp4)
+
+
 ## Usage
+
+To use only the SmartMouseMultiDir algorithm in your own scripts:
+
+Copy the `SmartMouseMultiDir.java` and `mousedata.json` files to your project.
+
+Add the following line to your script's `onStart()` method:
+
+
+```java
+@Override
+public void onStart() {
+    Mouse.setMouseAlgorithm(new SmartMouseMultiDir());
+    // Your other initialization code
+}
+````
+
+## Scripts Usage
 
 The `dreambot_example` folder contains a small pre-made dataset that's ready to use with the algorithm immediately.
 
