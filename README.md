@@ -1,6 +1,8 @@
-# DreamBot Mouse Movement Simulator
+# SmartMouse
 
-This project provides tools for creating realistic mouse movement patterns for use in DreamBot scripts. It includes data collection, processing, and example implementation for natural mouse movements.
+This project provides tools for creating realistic mouse movement patterns for use in DreamBot scripts. 
+
+It includes data collection, processing, and example implementation for natural mouse movements.
 
 ## Components
 
