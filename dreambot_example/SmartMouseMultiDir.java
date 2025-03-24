@@ -148,7 +148,7 @@ public class SmartMouseMultiDir implements MouseAlgorithm {
             double stepDurationSeconds = calculateSleepDuration(i, path.size(), distance, easingFunc);
 
             // Move smoothly from the current position to stepPoint
-            moveSmoothly(Mouse.getPosition(), stepPoint, stepDurationSeconds);
+            moveSmoothly(Mouse.getPosition(), stepPoint, stepDurationSeconds, easingFunc);
         }
 
         double finalDistance = distance(Mouse.getPosition(), target);
@@ -204,30 +204,46 @@ public class SmartMouseMultiDir implements MouseAlgorithm {
     /**
      * Move from 'start' to 'end' in multiple micro-steps, each with a short sleep.
      */
-    private void moveSmoothly(Point start, Point end, double totalStepSeconds) {
-        double dist = distance(start, end);
-        // e.g. 5 micro-steps per ~2.5 pixels
+    private void moveSmoothly(Point start, Point end, double totalMovementSeconds, EasingFunction easingFunc) {
+        // Distance between start and end
+        double dist = start.distance(end);
+        
+        // Decide how many micro-steps (subdivisions) to use.
         int subdivisions = Math.max(5, (int) (dist / 2.5));
-
+        
+        // For time-based pacing, compute how long each micro-step should take.
+        double microSleepMs = (totalMovementSeconds * 1000.0) / subdivisions;
+    
+        // Decompose start/end into x/y
         double sx = start.getX();
         double sy = start.getY();
         double ex = end.getX();
         double ey = end.getY();
-
+    
+        // Delta
         double dx = ex - sx;
         double dy = ey - sy;
-
-        double microSleepMs = (totalStepSeconds * 1000.0) / subdivisions;
-
+    
+        // Perform the micro-steps
         for (int i = 1; i <= subdivisions; i++) {
-            double frac = (double) i / subdivisions;
-            int ix = (int) (sx + dx * frac);
-            int iy = (int) (sy + dy * frac);
-
-            Mouse.hop(new Point(ix, iy));
+            // Linear fraction from 0.0 to 1.0
+            double t = (double) i / subdivisions;
+            
+            // Apply the easing function to get a non-linear fraction
+            double easedFrac = easingFunc.apply(t);
+    
+            // Interpolate position with easedFrac
+            double ix = sx + dx * easedFrac;
+            double iy = sy + dy * easedFrac;
+    
+            // "Hop" or move the mouse to the eased position
+            Mouse.hop(new Point((int) ix, (int) iy));
+    
+            // Brief sleep so it's not instantaneous
             sleep(microSleepMs);
         }
     }
+    
 
     /**
      * Build a path of points from 'start' to 'target' using offsets from mousedata (if any),
