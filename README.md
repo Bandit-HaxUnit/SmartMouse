@@ -130,10 +130,6 @@ The `SmartMouseMultiDir` class implements DreamBot's `MouseAlgorithm` interface 
 - Adds subtle human-like variance to speeds (±5%)
 - Simulates the natural jitter and imprecision in human movements
 
-### Demo Video
-
-See the algorithm in action here: [Mouse Movement Demo](https://i.imgur.com/SIv4cMb.mp4)
-
 ### AFK Simulation
 
 The `SimulateAFK` class allows scripts to move the mouse off-screen to simulate AFK behavior.
