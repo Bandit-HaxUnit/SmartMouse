@@ -70,7 +70,8 @@ If you prefer to create your own custom mouse movement dataset, follow these ste
 
 Run the cover recorder to collect movement data: `recorder.py`
 
-> Move your mouse from the green dot and click the red dot for each distance and direction.
+> Move your mouse to the red dot and click it (it turns green).
+> Move your mouse to the blue dot and click it (a new pair spawns after).
 
 ### 2. Processing Data
 
