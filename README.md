@@ -11,6 +11,8 @@ It includes data collection, processing, and example implementation for natural 
 - **`recorder.py`**  
   Records mouse movements for 8 different directions and various distance thresholds using a visual interface with green (start) and red (end) dots.
 
+![](demo/recorder.gif)
+
 ### Data Processing Tools
 
 - **`parser.py`**  
