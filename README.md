@@ -6,13 +6,10 @@ It includes data collection, processing, and example implementation for natural 
 
 ## Components
 
-### Data Collection Tools
+### Data Collection
 
-- **`cover_recorder.py`**  
+- **`recorder.py`**  
   Records mouse movements for 8 different directions and various distance thresholds using a visual interface with green (start) and red (end) dots.
-
-- **`multiple_dots_recorder.py`**  
-  More advanced recorder that supports recording movements between multiple points for creating more complex and chain-like movement patterns.
 
 ### Data Processing Tools
 
@@ -69,18 +66,15 @@ If you prefer to create your own custom mouse movement dataset, follow these ste
 
 ### 1. Recording Mouse Movements 
 
-Run the cover recorder to collect movement data: `cover_recorder.py`
+Run the cover recorder to collect movement data: `recorder.py`
 
 > Move your mouse from the green dot and click the red dot for each distance and direction.
-
-For more complex patterns, use the multiple dots recorder: `multiple_dots_recorder.py`
-
-> Start by clicking any random dot and continue clicking other dots.
 
 ### 2. Processing Data
 
 - Parse the data into the correct format: `parser.py` generates `mousedata_parsed.json`
 - Clean the data by removing outliers: `remove_outliers.py` generates `mousedata_parsed_cleaned.json`
+- Check if you have at least one path per distance and angle category using `counter.py`
 
 ### 3. Implementation in DreamBot
 

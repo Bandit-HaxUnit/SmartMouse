@@ -1,7 +1,7 @@
 import json
 
 def main():
-    with open("mousedata_out_cleaned.json", "r") as f:
+    with open("mousedata_parsed_cleaned.json", "r") as f:
         data = json.load(f)
 
     total = 0

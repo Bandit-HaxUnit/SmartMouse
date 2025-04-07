@@ -5,13 +5,13 @@ import time
 import tkinter as tk
 from pynput.mouse import Controller
 
-MOUSE_DATA_FILE = "mousedata_parsed_cleaned.json"
+MOUSE_DATA_FILE = "mousedata.json"
 DISTANCE_THRESHOLDS = [12, 18, 26, 39, 58, 87, 130, 190, 260, 360, 500]
 
 BASE_SPEEDS = {
-    'fast':   (0.005, 0.007),
-    'medium': (0.007, 0.010),
-    'slow':   (0.010, 0.013)
+    'fast':   (0.001, 0.003),
+    'medium': (0.003, 0.005),
+    'slow':   (0.005, 0.007)
 }
 
 SPEED_VARIANCE = 0.3
@@ -125,11 +125,11 @@ def load_mousedata():
 
 def get_base_speed(distance):
     if distance <= 100:
-        return random.uniform(*BASE_SPEEDS['fast'])
+        return random.uniform(*BASE_SPEEDS['fast']) * 2
     elif distance <= 250:
-        return random.uniform(*BASE_SPEEDS['medium'])
+        return random.uniform(*BASE_SPEEDS['medium']) * 2
     else:
-        return random.uniform(*BASE_SPEEDS['slow'])
+        return random.uniform(*BASE_SPEEDS['slow']) * 2
 
 def add_human_variance(base_speed):
     return base_speed + random.uniform(-base_speed * SPEED_VARIANCE, base_speed * SPEED_VARIANCE)
@@ -226,7 +226,7 @@ def move_to_point(mouse, mousedata, start_x, start_y, target_x, target_y, overla
 
     for i, (px, py) in enumerate(path):
         mouse.position = (px, py)
-        time.sleep(get_sleep_duration(i, len(path), distance))
+        time.sleep(get_sleep_duration(i, len(path)*10, distance))
 
     mouse.position = (target_x, target_y)
     overlay.draw_dot(target_x, target_y)
@@ -239,17 +239,6 @@ def main():
 
         # Example points or random generation
         points = [
-            (1348, 740),
-            (1366, 740),
-            (1398, 740),
-            (1451, 739),
-            (1376, 782),
-            (1423, 780),
-            (1466, 784),
-            (1521, 786),
-            (1365, 825),
-            (1407, 824),
-            (1452, 819),
             (765, 408),
             (973, 479),
             (882, 552),
@@ -257,6 +246,18 @@ def main():
             (684, 391),
             (636, 619),
             (663, 720),
+            (925, 356),
+            (1348, 740),
+            (925, 356),
+            (1348, 740),
+            (925, 356),
+            (1348, 740),
+            (925, 356),
+            (1348, 740),
+            (925, 356),
+            (1348, 740),
+            (925, 356),
+            (1348, 740),
             (925, 356),
         ]
         # points = generate_random_points(NUM_POINTS, overlay.screen_width, overlay.screen_height)
