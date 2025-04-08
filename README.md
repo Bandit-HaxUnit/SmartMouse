@@ -24,7 +24,7 @@ It includes data collection, processing, and example implementation for natural 
 - **`move.py`**  
   Utility for testing the recorded mouse movements visually.
 
-  ![](demo/mouse.gif)
+  ![](demo/move.gif)
 
 ### DreamBot Implementation
 
